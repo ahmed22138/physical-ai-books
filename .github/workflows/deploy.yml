@@ -1,0 +1,58 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: 'frontend/package-lock.json'
+
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: npm ci
+
+      - name: Build Docusaurus
+        working-directory: ./frontend
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./frontend/build
+          cname: textbook.example.com  # Replace with your custom domain if using one
+          user_name: 'GitHub Action Bot'
+          user_email: 'action@github.com'
+          commit_message: 'Deploy: ${{ github.event.head_commit.message }}'
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: docusaurus-build
+          path: ./frontend/build
+
+      - name: Log deployment URL
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: echo "Deployed to: https://${{ github.repository_owner }}.github.io/ai-textbook/"
