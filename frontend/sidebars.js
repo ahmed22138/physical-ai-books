@@ -36,8 +36,17 @@ const sidebars = {
         'perception/week-6-slam',
       ],
     },
-    // Placeholder for Modules 3-4 - will be added as content is created
-    // Module 3: Motion Planning & Navigation (weeks 7-9)
+    {
+      type: 'category',
+      label: 'Module 3: Motion Planning & Navigation',
+      collapsed: false,
+      items: [
+        'control/week-7-path-planning',
+        'control/week-8-trajectory-planning',
+        'control/week-9-mobile-navigation',
+      ],
+    },
+    // Placeholder for Module 4 - will be added as content is created
     // Module 4: Integration & Advanced Topics (weeks 10-12)
   ],
 };
