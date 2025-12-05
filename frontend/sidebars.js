@@ -46,8 +46,16 @@ const sidebars = {
         'control/week-9-mobile-navigation',
       ],
     },
-    // Placeholder for Module 4 - will be added as content is created
-    // Module 4: Integration & Advanced Topics (weeks 10-12)
+    {
+      type: 'category',
+      label: 'Module 4: Integration & Advanced Topics',
+      collapsed: false,
+      items: [
+        'integration/week-10-learning',
+        'integration/week-11-deployment',
+        'integration/week-12-capstone',
+      ],
+    },
   ],
 };
 

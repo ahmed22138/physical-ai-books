@@ -1,0 +1,261 @@
+---
+sidebar_position: 3
+---
+
+# Week 12: Capstone Project & Future Directions
+
+## Course Synthesis
+
+Over 12 weeks, we've built from embodied AI philosophy to complete autonomous systems. This final week synthesizes the journey and points toward specialization.
+
+## Part 1: Capstone Project
+
+### Example: Warehouse Mobile Manipulator
+
+**Goal**: Design and implement a robot for autonomous bin picking in warehouses.
+
+**System Requirements**:
+- Pick items from bins on shelves (1-3m high)
+- Place in other bins for shipping
+- Operate 24/7 in dynamic warehouse
+- Handle unknown objects
+- Adapt to changing bin layouts
+
+**Architecture**:
+
+```
+┌─────────────────────────────────┐
+│    PERCEPTION (Weeks 4-6)       │
+│  - 3D cameras on arm base       │
+│  - SLAM for localization        │
+│  - Point cloud processing       │
+└────────────┬────────────────────┘
+             ↓
+┌─────────────────────────────────┐
+│    PLANNING (Weeks 7-9)         │
+│  - Shelf navigation (A*)        │
+│  - Bin approach planning        │
+│  - Grasp candidate generation   │
+└────────────┬────────────────────┘
+             ↓
+┌─────────────────────────────────┐
+│    CONTROL (Weeks 3, 8)         │
+│  - Arm trajectory planning      │
+│  - Collision avoidance          │
+│  - Force control for grasping   │
+└────────────┬────────────────────┘
+             ↓
+┌─────────────────────────────────┐
+│   LEARNING (Week 10)            │
+│  - Learn bin-specific grasps    │
+│  - Adapt to novel items         │
+└────────────┬────────────────────┘
+             ↓
+┌─────────────────────────────────┐
+│ DEPLOYMENT (Weeks 11-12)        │
+│  - Safety validation            │
+│  - Failure recovery             │
+│  - Continuous improvement       │
+└─────────────────────────────────┘
+```
+
+### Implementation Phases
+
+**Phase 1 (1 week)**: Simulation
+- Model warehouse in Gazebo
+- Test navigation and planning
+- Validate collision avoidance
+
+**Phase 2 (1 week)**: Single bin
+- Deploy to real robot
+- Pick from stationary bin
+- Test 10 items, measure success rate
+
+**Phase 3 (1 week)**: Full shelf
+- Pick from multiple bin levels
+- Navigate between shelves
+- Handle part displacement
+
+**Phase 4 (Ongoing)**: Production
+- Continuous learning from failures
+- Adapt to new products
+- Monitor uptime and safety
+
+## Part 2: Specialization Paths
+
+Beyond this course, roboticists specialize:
+
+### Path 1: Autonomous Vehicles
+- **Focus**: Navigation in complex urban environments
+- **Key skills**: Semantic segmentation, multi-object tracking, trajectory prediction
+- **Tools**: Carla simulator, ROS Autoware stack
+- **Application**: Self-driving cars, delivery robots
+
+### Path 2: Dexterous Manipulation
+- **Focus**: Complex hand-object interactions
+- **Key skills**: Grasp synthesis, tactile sensing, in-hand manipulation
+- **Tools**: Isaac Gym simulation, neural network grasping
+- **Application**: Assembly, surgical robotics
+
+### Path 3: Human-Robot Collaboration
+- **Focus**: Safe interaction with humans
+- **Key skills**: Gesture recognition, force limiting, shared autonomy
+- **Tools**: Lightweight manipulators, haptic interfaces
+- **Application**: Factories, rehabilitation, care robotics
+
+### Path 4: Swarm Robotics
+- **Focus**: Multi-robot coordination
+- **Key skills**: Distributed algorithms, communication protocols, emergent behaviors
+- **Tools**: ROS multi-robot, graph databases
+- **Application**: Search & rescue, environmental monitoring
+
+### Path 5: Soft Robotics
+- **Focus**: Compliant systems for delicate tasks
+- **Key skills**: Material science, biomimetics, control of underactuated systems
+- **Tools**: Finite element analysis, physics simulation
+- **Application**: Food handling, medical robotics
+
+## Part 3: Research Frontiers
+
+### Unsolved Problems
+
+1. **Generalization**: Robots trained on task A fail on task B. How to build general-purpose robots?
+
+2. **Learning from interactions**: Current approach: collect human data. Future: robots learn by doing (reinforcement learning at scale)
+
+3. **Long-term autonomy**: Robots deploy for months. How to maintain performance with wear, environmental change?
+
+4. **Semantic understanding**: Current SLAM is geometric (where am I?). Need semantic (what is that?).
+
+5. **Safety guarantees**: Formal verification that robot won't cause harm even in unexpected situations.
+
+### Emerging Technologies
+
+- **Transformer models** for robotics: Using large language models for robot task planning
+- **Differentiable simulation**: Optimize robot policies using gradient descent through physics simulation
+- **Neuromorphic sensors**: Event cameras and spiking neural networks for efficient perception
+- **Quantum computing**: Potentially speedup path planning and optimization
+- **Continual learning**: Systems that improve over deployment without forgetting prior knowledge
+
+## Week 12 Learning Outcomes
+
+By the end of this course, you should be able to:
+
+1. **Design** complete embodied AI systems from perception to control
+2. **Implement** functional prototypes in simulation and on real hardware
+3. **Debug** complex behaviors when real robot behavior differs from expected
+4. **Identify** suitable specialization based on application domain
+5. **Contribute** to robotics research by building on existing systems
+6. **Understand** limitations and future research directions
+
+## Key Takeaways
+
+### The Embodied AI Loop
+
+```
+┌────────────────────────────────┐
+│  Goal: Operate in physical world│
+├────────────────────────────────┤
+│ SENSE: Perceive environment    │
+│  └─ Cameras, LIDAR, tactile    │
+│     sensors provide raw data   │
+│                                │
+│ THINK: Process & decide        │
+│  └─ Perception, planning,      │
+│     reasoning about goals      │
+│                                │
+│ ACT: Influence world           │
+│  └─ Motors, manipulators       │
+│     execute commands           │
+│                                │
+│ LEARN: Improve from experience │
+│  └─ Reinforce successful,      │
+│     correct failed behaviors   │
+└────────────────────────────────┘
+```
+
+### Design Principles
+
+1. **Start simple**: Program before learning. Decompose into manageable pieces.
+2. **Validate early**: Test in simulation, on single tasks, before full integration.
+3. **Measure everything**: Metrics quantify progress and identify bottlenecks.
+4. **Plan for failure**: Real robots fail. Design recovery, not just prevention.
+5. **Iterate rapidly**: Deploy, measure, improve, repeat.
+
+## Resources for Continued Learning
+
+### Books
+- "Introduction to Autonomous Mobile Robots" - Siegwart, Nourbakhsh
+- "Robot Dynamics and Control" - Spong, Hutchinson, Vidyasagar
+- "Planning Algorithms" - LaValle
+
+### Courses
+- Stanford: CS237 - Robotics (YouTube)
+- MIT: 6.141 - Robotics Systems Engineering
+- UC Berkeley: EECS 206 - Introduction to Robotics
+
+### Communities
+- ROS (Robot Operating System) - active developer community
+- ICRA, RSS, IROS conferences - top robotics research venues
+- r/robotics - helpful community forum
+- GitHub robotics projects - learn by reading others' code
+
+### Tools
+- **ROS 2**: Industry-standard middleware
+- **Gazebo**: Free physics simulator
+- **OpenCV**: Computer vision library
+- **MoveIt**: Arm motion planning
+- **Docker**: Containerize robot software
+
+## Final Thoughts
+
+Robotics is at an inflection point. Progress in AI (especially large language models), cheaper hardware, and better simulation has made it feasible for small teams to build sophisticated systems.
+
+The fundamentals you've learned—embodied AI, perception, planning, control, learning—are timeless. Technologies change (Python replaces C++, GPT-4 replaces previous models), but the core concepts persist.
+
+**Your next steps**:
+1. Pick a real robot (Boston Dynamics Spot, UR manipulator, mobile base)
+2. Implement one component deeply (e.g., SLAM, manipulation pipeline)
+3. Contribute to open-source robotics projects
+4. Join a robotics team or lab
+5. Specialize in a domain that excites you
+
+The field needs diverse talent: engineers building systems, researchers pushing theory, entrepreneurs commercializing, educators training the next generation.
+
+Welcome to embodied AI. The future is physical.
+
+---
+
+## Course Conclusion
+
+Thank you for completing **Physical AI & Humanoid Robotics**. You've progressed from understanding why embodied intelligence matters to designing complete autonomous systems.
+
+**What you've learned**:
+- 12 comprehensive weeks of robotics fundamentals
+- 100+ code examples implementing real algorithms
+- Integration of perception, planning, control, and learning
+- Practical deployment considerations
+
+**Next steps**: Apply this knowledge. Build something. Iterate. Share with the community.
+
+The robots of tomorrow are being built today by people like you.
+
+🤖
+
+---
+
+## Appendix: Recommended Reading by Week
+
+| Week | Key Papers | Classic References |
+|------|-----------|-------------------|
+| 1-2 | Embodiment hypothesis | Rodney Brooks: "Intelligence Without Representation" |
+| 3-4 | Control theory | Classical control textbooks |
+| 5-6 | Computer vision | "Computer Vision: Algorithms and Applications" |
+| 7 | SLAM | "Probabilistic Robotics" Chapters 7-8 |
+| 8-9 | Motion planning | LaValle: "Planning Algorithms" |
+| 10 | Learning | Barto & Sutton: "Reinforcement Learning" |
+| 11-12 | Systems | Brooks & Flynn: "Fast, Cheap and Out of Control" |
+
+---
+
+💡 **Final Tip**: The best way to learn robotics is to build. Every robot teaches you something new!

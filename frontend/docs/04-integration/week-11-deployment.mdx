@@ -1,0 +1,187 @@
+---
+sidebar_position: 2
+---
+
+# Week 11: System Integration & Real-World Deployment
+
+## From Simulation to Reality
+
+All components work perfectly in simulation. Real robots introduce noise, delays, and failures. This week bridges the gap.
+
+## Part 1: Reality Gap
+
+**Sim-to-real transfer** is the challenge of deploying algorithms trained/tested in simulation to real robots.
+
+### Sources of Sim-to-Real Gap
+
+| Simulation | Reality |
+|-----------|---------|
+| Perfect physics | Friction, slipping, wear |
+| No noise | Sensor noise, quantization |
+| Zero latency | 10-200ms control delays |
+| Infinite compute | Limited embedded CPUs |
+| Known environment | Unknown, dynamic environments |
+
+### Domain Randomization
+
+Randomize simulation parameters so policy learns robust behavior.
+
+```python
+class SimulationEnv:
+    def randomize_parameters(self):
+        """Randomize physics for robustness"""
+
+        # Friction coefficient
+        self.friction = np.random.uniform(0.1, 1.5)
+
+        # Mass variations
+        self.mass = np.random.uniform(0.9, 1.1) * self.nominal_mass
+
+        # Motor delays
+        self.motor_delay = np.random.randint(0, 50)  # ms
+
+        # Sensor noise
+        self.sensor_noise = np.random.uniform(0.001, 0.01)
+
+        # Image quality (blur, noise)
+        self.image_blur = np.random.uniform(0, 2)
+        self.image_noise = np.random.uniform(0, 0.05)
+```
+
+## Part 2: Testing Checklist
+
+Before deploying to real robot:
+
+```python
+class DeploymentValidator:
+    def validate_all(self):
+        """Complete validation suite"""
+
+        tests = {
+            'perception': [
+                self.test_camera_calibration(),
+                self.test_lidar_accuracy(),
+                self.test_imu_drift(),
+            ],
+            'localization': [
+                self.test_slam_initialized(),
+                self.test_map_consistency(),
+                self.test_drift_rate(),
+            ],
+            'planning': [
+                self.test_planner_convergence(),
+                self.test_collision_detection(),
+                self.test_replanning_latency(),
+            ],
+            'control': [
+                self.test_motor_calibration(),
+                self.test_command_latency(),
+                self.test_safety_limits(),
+            ],
+            'integration': [
+                self.test_full_stack_10_minutes(),
+                self.test_failure_recovery(),
+                self.test_emergency_stop(),
+            ]
+        }
+
+        all_passed = all(
+            all(test for test in category)
+            for category in tests.values()
+        )
+
+        return all_passed, tests
+
+    def test_emergency_stop(self):
+        """Ensure robot stops immediately"""
+        # Send stop command
+        self.robot.stop()
+
+        # Verify wheels stopped within 500ms
+        time.sleep(0.5)
+        assert self.robot.velocity == 0
+        return True
+```
+
+## Part 3: Handling Failures
+
+Robots fail. Design for recovery.
+
+```python
+class RobotSupervisor:
+    def __init__(self):
+        self.health_checks = {
+            'lidar': self.check_lidar,
+            'imu': self.check_imu,
+            'motors': self.check_motors,
+            'compute': self.check_cpu_temp,
+        }
+
+        self.failure_responses = {
+            'lidar_failure': self.stop_and_alert,
+            'imu_failure': self.use_wheel_odometry_only,
+            'motor_failure': self.enable_limp_mode,
+            'compute_overheat': self.reduce_frequency,
+        }
+
+    def monitor(self):
+        """Continuous health monitoring"""
+
+        while True:
+            failures = {}
+
+            for name, check in self.health_checks.items():
+                status, error = check()
+                if not status:
+                    failures[name] = error
+
+            # Handle failures
+            for failure_type, error_info in failures.items():
+                self.handle_failure(failure_type, error_info)
+
+            time.sleep(1)
+
+    def check_lidar(self):
+        """Check LIDAR health"""
+        try:
+            scan = self.robot.get_lidar_scan()
+            if len(scan) < 360:  # Should have 360 points
+                return False, "Low scan count"
+            return True, None
+        except:
+            return False, "LIDAR communication failure"
+
+    def handle_failure(self, failure_type, error_info):
+        """Execute failure response"""
+
+        response = self.failure_responses.get(failure_type)
+        if response:
+            response(error_info)
+        else:
+            self.stop_and_alert(error_info)
+
+    def stop_and_alert(self, error_info):
+        """Emergency stop"""
+        self.robot.stop()
+        self.notify_operator(f"Robot stopped: {error_info}")
+
+    def limp_mode(self):
+        """Continue with reduced capability"""
+        # Use wheels only, no arm control
+        print("Limp mode: Motors degraded, reduced autonomy")
+```
+
+## Week 11 Learning Outcomes
+
+By the end of this week, you should be able to:
+
+1. **Identify** sources of sim-to-real gap
+2. **Apply** domain randomization for robust policies
+3. **Implement** comprehensive validation suite
+4. **Design** failure detection and recovery systems
+5. **Debug** robot behavior on real hardware
+6. **Deploy** systems safely and confidently
+
+---
+
+**Next**: Week 12 - Capstone & Future Directions
