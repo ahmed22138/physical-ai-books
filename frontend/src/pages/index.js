@@ -356,11 +356,11 @@ export default function Home() {
         </div>
 
         <div className="cta-container">
-          <a className="btn btn-primary" href="/ai-textbook/docs/intro">
+          <a className="btn btn-primary" href="/docs/intro">
             📖 Start Learning Now
           </a>
 
-          <a className="btn btn-secondary" href="/ai-textbook/docs/introduction/week-1-embodied-ai">
+          <a className="btn btn-secondary" href="/docs/introduction/week-1-embodied-ai">
             ▶ Week 1: Embodied AI
           </a>
         </div>
@@ -376,7 +376,7 @@ export default function Home() {
                 Master embodied intelligence through interactive, hands-on learning.
               </p>
               <div className="social-links">
-                <a href="https://github.com/your-username/ai-textbook" title="GitHub">
+                <a href="https://github.com/your-username" title="GitHub">
                   🔗
                 </a>
                 <a href="https://twitter.com" title="Twitter">
@@ -391,25 +391,25 @@ export default function Home() {
             <div className="footer-section">
               <h3>Course</h3>
               <ul>
-                <li><a href="/ai-textbook/docs/intro">Introduction</a></li>
-                <li><a href="/ai-textbook/docs/introduction/week-1-embodied-ai">Week 1: Embodied AI</a></li>
-                <li><a href="/ai-textbook/docs">All Modules</a></li>
+                <li><a href="/docs/intro">Introduction</a></li>
+                <li><a href="/docs/introduction/week-1-embodied-ai">Week 1: Embodied AI</a></li>
+                <li><a href="/docs">All Modules</a></li>
               </ul>
             </div>
 
             <div className="footer-section">
               <h3>Resources</h3>
               <ul>
-                <li><a href="https://github.com/your-username/ai-textbook">GitHub Repository</a></li>
-                <li><a href="/ai-textbook/docs">Setup Guide</a></li>
+                <li><a href="https://github.com/your-username/">GitHub Repository</a></li>
+                <li><a href="/docs">Setup Guide</a></li>
               </ul>
             </div>
 
             <div className="footer-section">
               <h3>About</h3>
               <ul>
-                <li><a href="/ai-textbook/docs/intro">Documentation</a></li>
-                <li><a href="https://github.com/your-username/ai-textbook/issues">Contact</a></li>
+                <li><a href="/docs/intro">Documentation</a></li>
+                <li><a href="https://github.com/your-username/issues">Contact</a></li>
               </ul>
             </div>
           </div>
