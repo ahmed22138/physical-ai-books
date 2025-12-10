@@ -1,0 +1,46 @@
+# Web Framework
+fastapi==0.115.0
+uvicorn[standard]==0.32.0
+python-multipart==0.0.12
+
+# Database
+sqlalchemy==2.0.36
+alembic==1.14.0
+psycopg[binary]==3.2.3
+asyncpg==0.30.0
+
+# Vector Database
+qdrant-client==1.12.1
+
+# AI/LLM
+openai==1.55.3
+
+# Validation & Models
+pydantic==2.10.3
+pydantic-settings==2.6.1
+
+# Authentication & Security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+bcrypt==4.2.1
+
+# Environment & Configuration
+python-dotenv==1.0.1
+
+# HTTP Client
+httpx==0.28.1
+
+# Data Processing
+pandas==2.2.3
+numpy==2.2.0
+
+# Utilities
+python-dateutil==2.9.0.post0
+
+# Logging & Monitoring
+loguru==0.7.3
+
+# Testing (Optional - for development)
+pytest==8.3.4
+pytest-asyncio==0.24.0
+httpx==0.28.1

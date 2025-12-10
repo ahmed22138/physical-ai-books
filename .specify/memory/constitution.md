@@ -50,3 +50,4 @@ A FastAPI-backed RAG chatbot powered by OpenAI Agents/ChatKit uses Neon PostgreS
 All development must conform to these principles. The constitution supersedes contradictory practices. Amendments require documentation and approval before implementation. Complexity decisions (e.g., technology choices) must reference this constitution's rationale.
 
 **Version**: 1.0.0 | **Ratified**: 2025-12-06 | **Last Amended**: 2025-12-06
+
