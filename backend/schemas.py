@@ -13,7 +13,7 @@ from uuid import UUID
 
 class ChatQueryRequest(BaseModel):
     """Request schema for POST /chat"""
-    query: str = Field(..., min_length=10, max_length=500, description="User question or query")
+    query: str = Field(..., min_length=2, max_length=500, description="User question or query")
     selected_text: Optional[str] = Field(None, min_length=50, max_length=5000, description="Highlighted text from chapter")
     chapter: Optional[str] = Field(None, description="Chapter context (e.g., 'week-7-kinematics')")
     stream: bool = Field(False, description="Stream response token-by-token")

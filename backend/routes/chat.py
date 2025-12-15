@@ -54,12 +54,12 @@ async def query_chatbot(
     """
     try:
         # Validate query length
-        if len(request.query) < 10 or len(request.query) > 500:
+        if len(request.query) < 2 or len(request.query) > 500:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail={
                     "error": "InvalidQueryError",
-                    "message": "Query must be between 10 and 500 characters",
+                    "message": "Query must be between 2 and 500 characters",
                     "status": 400,
                     "timestamp": datetime.utcnow().isoformat() + "Z"
                 }
