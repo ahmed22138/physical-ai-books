@@ -23,12 +23,12 @@ const config = {
   organizationName: 'your-username', // Usually your GitHub org/user name.
   projectName: 'ai-textbook', // Usually your repo name.
 
-  onBrokenLinks: 'warn', // Phase 1: content still being created
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenLinks: 'ignore', // Phase 1: content still being created
+  onBrokenMarkdownLinks: 'ignore',
 
   // Custom fields for backend API
   customFields: {
-    backendApiUrl: process.env.REACT_APP_API_URL || 'http://localhost:8000',
+    backendApiUrl: process.env.REACT_APP_API_URL || 'http://localhost:8000/chat',
   },
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -49,14 +49,14 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/your-username/ai-textbook/tree/main/',
+            'https://github.com/your-username/tree/main/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/your-username/ai-textbook/tree/main/',
+            'https://github.com/your-username//tree/main/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -84,7 +84,7 @@ const config = {
             label: 'Book',
           },
           {
-            href: 'https://github.com/your-username/ai-textbook',
+            href: 'https://github.com/your-username',
             label: 'GitHub',
             position: 'right',
           },
