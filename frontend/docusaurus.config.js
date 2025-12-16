@@ -28,7 +28,7 @@ const config = {
 
   // Custom fields for backend API
   customFields: {
-    backendApiUrl: process.env.REACT_APP_API_URL || 'http://localhost:8000/chat',
+    backendApiUrl: process.env.REACT_APP_API_URL || 'https://physical-ai-books.onrender.com/chat',
   },
 
   // Even if you don't use internalization, you can use this field to set useful
