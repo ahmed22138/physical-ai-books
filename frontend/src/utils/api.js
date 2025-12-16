@@ -7,7 +7,7 @@
 // For Docusaurus, we need to check if process is defined (browser vs SSR)
 const API_BASE_URL = typeof process !== 'undefined' && process.env?.REACT_APP_API_URL
   ? process.env.REACT_APP_API_URL
-  : 'http://localhost:8000';
+  : 'https://physical-ai-books.onrender.com';
 
 /**
  * Query the RAG chatbot
