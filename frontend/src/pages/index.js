@@ -319,6 +319,135 @@ export default function Home() {
               font-size: 0.8rem;
               margin-top: 12px;
             }
+
+            /* Responsive Design - Mobile First */
+
+            /* Mobile devices (< 480px) */
+            @media (max-width: 480px) {
+              h1 {
+                font-size: 2rem;
+                padding: 0 10px;
+              }
+
+              .tagline {
+                font-size: 0.85rem;
+              }
+
+              .subtitle {
+                font-size: 0.95rem;
+                padding: 0 10px;
+              }
+
+              .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                margin: 30px 10px;
+                padding: 0 5px;
+              }
+
+              .stat-card {
+                padding: 16px 12px;
+              }
+
+              .stat-number {
+                font-size: 2rem;
+              }
+
+              .stat-label {
+                font-size: 0.75rem;
+              }
+
+              .cta-container {
+                flex-direction: column;
+                gap: 12px;
+                padding: 0 20px;
+              }
+
+              .btn {
+                width: 100%;
+                padding: 14px 30px;
+                font-size: 0.95rem;
+              }
+
+              .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                text-align: center;
+              }
+
+              .social-links {
+                justify-content: center;
+              }
+
+              .container {
+                padding: 30px 15px;
+              }
+
+              .logo {
+                font-size: 60px !important;
+              }
+            }
+
+            /* Small tablets (481px - 768px) */
+            @media (min-width: 481px) and (max-width: 768px) {
+              h1 {
+                font-size: 2.5rem;
+              }
+
+              .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+                margin: 35px 15px;
+              }
+
+              .stat-card {
+                padding: 18px;
+              }
+
+              .stat-number {
+                font-size: 2.5rem;
+              }
+
+              .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+              }
+            }
+
+            /* Tablets (769px - 1024px) */
+            @media (min-width: 769px) and (max-width: 1024px) {
+              h1 {
+                font-size: 3rem;
+              }
+
+              .stats {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 18px;
+              }
+            }
+
+            /* Landscape phones */
+            @media (max-height: 600px) and (orientation: landscape) {
+              h1 {
+                font-size: 2rem;
+              }
+
+              .container {
+                padding: 20px 15px;
+              }
+
+              .stats {
+                margin: 20px auto;
+                gap: 10px;
+              }
+
+              .stat-card {
+                padding: 12px;
+              }
+
+              .stat-number {
+                font-size: 1.8rem;
+              }
+            }
           `}
         </style>
       </Head>
